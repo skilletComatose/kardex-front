@@ -19,7 +19,7 @@ export class ManageProductComponent implements OnInit {
 			.subscribe(
 				{
 					next: resp => {
-						this.products = resp
+						this.products = resp.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 						console.log(resp);
 					},
 					error: err => console.log("error;", err)

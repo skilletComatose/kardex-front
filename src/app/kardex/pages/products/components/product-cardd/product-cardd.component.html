@@ -28,17 +28,17 @@
 				<mat-chip>Stock: {{ product.stockQuantity | number }}</mat-chip>
 			</div>
 			<div class="product-info">
-				<mat-chip>Creado: {{ product.createdAt | date }}</mat-chip>
+				<mat-chip>Creado: {{ product.createdAt | date:'d MMM yyyy h:mm a' }}</mat-chip>
 			</div>
 			<div class="product-info">
-				<mat-chip>Actualizado: {{ product.updatedAt | date }}</mat-chip>
+				<mat-chip>Actualizado: {{ product.updatedAt | date:'d MMM yyyy h:mm a' }}</mat-chip>
 			</div>
 
 			<br>
 			<strong>Categoría</strong>
 			<mat-chip-listbox>
-				<mat-chip *ngFor="let prop of getFilteredCategory(product.category)">
-					{{ prop }}
+				<mat-chip  *ngFor="let prop of getFilteredCategory(product.category)">
+					{{ truncateText(prop) }}
 				</mat-chip>
 			</mat-chip-listbox>
 		</mat-card-content>
