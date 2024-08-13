@@ -1,0 +1,17 @@
+.sidenav-container {
+    height: 100vh;
+  }
+  
+  mat-sidenav {
+    width: 250px;
+  }
+  
+  .toolbar-menu {
+    background: #679eca;
+    color: white;
+  }
+  
+  .content {
+    padding: 16px;
+  }
+  

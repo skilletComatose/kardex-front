@@ -1,0 +1,11 @@
+.product-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+
+.product-info mat-icon {
+    margin-right: 8px;
+    color: #3f51b5; 
+  }
