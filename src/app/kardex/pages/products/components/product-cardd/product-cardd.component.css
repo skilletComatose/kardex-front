@@ -5,7 +5,7 @@
 }
  
 .custom-card {
-    max-width: 300px;
+    max-width: 400px;
     height: 600px;
     max-height: 600px;
     overflow-y: auto;
