@@ -11,14 +11,14 @@
                         <div class="col-8">
                             <mat-form-field appearance="fill" style="width: 100%;">
                                 <mat-label>Buscar productos</mat-label>
-                                <input matInput (keyup)="applyFilter($event.key)" placeholder="Buscar por nombre o descripción">
+                                <input matInput  (input)="applyFilter($event)" placeholder="Buscar por nombre o descripción">
                             </mat-form-field>
                         </div>
                         
                         <div class="col-3">
                             <mat-form-field appearance="fill" style="width: 100%;">
                                 <mat-label>Filtrar por categoría</mat-label>
-                                <mat-select #categorySelect (selectionChange)="applyCategoryFilter($event.value)" [value]="selectedCategory" >
+                                <mat-select #categorySelect (selectionChange)="applyCategoryFilter($event.value)" [(value)]="selectedCategory" >
                                     <mat-option value="">Todas</mat-option>
                                     <mat-option *ngFor="let category of categories" [value]="category">
                                         {{ category.name }}

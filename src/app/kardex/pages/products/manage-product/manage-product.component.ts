@@ -11,11 +11,11 @@ import { MatSelect } from '@angular/material/select';
 export class ManageProductComponent implements OnInit {
 
 	@ViewChild('categorySelect') categorySelect!: MatSelect;
-	
+
 	public filteredProducts: Product[] = [];
 	public products: Product[] = [];
 	public categories: Category[] = [];
-	public selectedCategory:Category | undefined;
+	public selectedCategory: Category | undefined;
 
 	constructor(private productService: ProductService) {
 
@@ -28,17 +28,20 @@ export class ManageProductComponent implements OnInit {
 
 
 	private loadProducts() {
-		console.log("CONSULTANDO PRODUCTOS")
 		this.productService.getAllProducts()
 			.subscribe(
 				{
 					next: resp => {
 						console.log("RESPUESTA OK")
 						this.filteredProducts = resp.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-						this.products = [...this.filteredProducts];	
+						this.products = [...this.filteredProducts];
 
-						let categorySet: Set<Category> = new Set(this.filteredProducts.map(product => product.category));
-						this.categories = Array.from(categorySet);
+
+						this.categories = this.filteredProducts.map(product => product.category)
+							.filter((value, index, self) =>
+								index === self.findIndex((t) => t.categoryId === value.categoryId)
+							);
+
 
 					},
 					error: err => console.log("error;", err)
@@ -46,30 +49,34 @@ export class ManageProductComponent implements OnInit {
 			)
 	}
 
-	applyFilter(searchText: string) {
+	applyFilter(event: Event) {
+		const inputElement = event.target as HTMLInputElement;
+		const searchText = inputElement.value;	
+		
 		this.filteredProducts = this.products
-		.filter(product => this.selectedCategory 
-					? this.selectedCategory.categoryId == product.category.categoryId
-					: true
-		)
-		.filter(product =>
-			product.name.toLowerCase().includes(searchText.toLowerCase()) ||
-			product.description.toLowerCase().includes(searchText.toLowerCase())
-		);
+			.filter(product => this.selectedCategory
+				? this.selectedCategory.categoryId == product.category.categoryId
+				: true
+			)
+			.filter(product =>
+				
+				product.name.toLowerCase().includes(searchText.toLowerCase()) ||
+				product.description.toLowerCase().includes(searchText.toLowerCase())
+			);
 	}
 
 	applyCategoryFilter(category: Category) {
-		if(!category) {
+		if (!category) {
 			this.filteredProducts = [...this.products];
 		};
 		this.filteredProducts = this.products.filter(product =>
-		  product.category.categoryId === category.categoryId
+			product.category.categoryId === category.categoryId
 		);
-	  }
+	}
 
-	  resetFilters() {
+	resetFilters() {
 		this.selectedCategory = undefined;
-		 this.categorySelect.value= ''
-		this.filteredProducts = this.products; 
-	  }
+		this.categorySelect.value = ''
+		this.filteredProducts = this.products;
+	}
 }
