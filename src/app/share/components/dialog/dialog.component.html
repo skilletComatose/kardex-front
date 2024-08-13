@@ -1,1 +1,40 @@
-<p>dialog works!</p>
+<mat-dialog-content class="grid">
+  <form [formGroup]="productForm" class="p-fluid mt-5">
+    <div class="p-grid">
+      <div class="p-col-12 p-md-6">
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Nombre</mat-label>
+          <input matInput [formControl]="$any(productForm).controls.name" readonly>
+        </mat-form-field>
+      </div>
+
+      <div class="p-col-12 p-md-6">
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Description</mat-label>
+          <input matInput [formControl]="$any(productForm).controls.description" readonly>
+        </mat-form-field>
+      </div>
+
+      <div class="p-col-12 p-md-6">
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Price</mat-label>
+          <input matInput [formControl]="$any(productForm).controls.price" readonly>
+        </mat-form-field>
+      </div>
+
+      <div class="p-col-12 p-md-6">
+        <mat-form-field appearance="fill" class="w-full">
+          <mat-label>Cantidad</mat-label>
+          <input matInput formControlName="stockQuantity">
+          <mat-error *ngIf="productForm.get('stockQuantity')?.hasError('required')" >Cantidad en stock es requerida.</mat-error>
+          <mat-error *ngIf="productForm.get('stockQuantity')?.hasError('pattern')">Debe ser un número entero mayor a cero.</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <mat-dialog-actions class="p-2">
+      <button mat-button (click)="onCancel()">Cancelar</button>
+      <button mat-button color="primary" (click)="onAddToStock()" [disabled]="productForm.invalid">Agregar a stock</button>
+      <button mat-button color="warn" (click)="onSubtractFromStock()"[disabled]="productForm.invalid" >Disminuir stock</button>
+    </mat-dialog-actions>
+  </form>
+</mat-dialog-content>

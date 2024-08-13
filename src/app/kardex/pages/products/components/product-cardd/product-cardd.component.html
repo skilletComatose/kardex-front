@@ -1,38 +1,45 @@
-<mat-card >
-    <mat-card-header>
-        <mat-card-title> {{ product.name }} </mat-card-title>
-        <mat-card-subtitle>{{ product.description }}</mat-card-subtitle>
-        
-    </mat-card-header>
-    
-    <img mat-card-image [src]="product.imageUrl" alt="">
-    <mat-card-content class="mt-1">
-        <br>
-        <div class="product-info">
-            <mat-chip>Price: {{ product.price | currency }}</mat-chip>
-        </div>
-        <div class="product-info">
-            <mat-chip>Stock: {{ product.stockQuantity | number }}</mat-chip>
-        </div>
-        <div class="product-info">
-            <mat-chip>Creado: {{ product.createdAt | date }}</mat-chip>
-        </div>
-        <div class="product-info">
-            <mat-chip>Actualizado: {{ product.updatedAt | date }}</mat-chip>
-        </div>
+<mat-card  class="custom-card">
+	<div class="grid nested-grid" style="width: 100%;">
+		<div class="col-10">
+			<div class="grid">
+				<div class="col-12 header-info">
+					<mat-card-title class="text-center font-bold"> {{ product.name }} </mat-card-title>
+				</div>
+				<div class="col-12 header-info">
+					<mat-card-subtitle class="text-center">{{ product.description }}</mat-card-subtitle>
+				</div>
+			</div>
+		</div>
+		<div class="col-2" >
+			<button class="edit-button"  mat-fab  color="primary" (click)="openDialog()">
+				<mat-icon>edit</mat-icon>
+			</button>
+		</div>
+	</div>
 
-        <br>
-        <strong>Categoría</strong>
-        <mat-chip-listbox>
-            <mat-chip *ngFor="let prop of getFilteredCategory(product.category)">
-                {{ prop }}
-            </mat-chip>
-        </mat-chip-listbox>
-    </mat-card-content>
+	<img mat-card-image [src]="product.imageUrl" class="card-image" alt="">
+	<mat-card-content class="mt-1">
+		<br>
+		<div class="product-info">
+			<mat-chip>Price: {{ product.price | currency }}</mat-chip>
+		</div>
+		<div class="product-info">
+			<mat-chip>Stock: {{ product.stockQuantity | number }}</mat-chip>
+		</div>
+		<div class="product-info">
+			<mat-chip>Creado: {{ product.createdAt | date }}</mat-chip>
+		</div>
+		<div class="product-info">
+			<mat-chip>Actualizado: {{ product.updatedAt | date }}</mat-chip>
+		</div>
 
+		<br>
+		<strong>Categoría</strong>
+		<mat-chip-listbox>
+			<mat-chip *ngFor="let prop of getFilteredCategory(product.category)">
+				{{ prop }}
+			</mat-chip>
+		</mat-chip-listbox>
+	</mat-card-content>
 
-
-    <mat-card-actions>
-        <button mat-button>Editar</button>
-    </mat-card-actions>
 </mat-card>

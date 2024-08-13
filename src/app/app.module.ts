@@ -7,6 +7,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { ShareModule } from './share/share.module';
 import { MaterialModule } from './material/material.module';
 import {  provideHttpClient } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {  provideHttpClient } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     ShareModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideAnimationsAsync(),

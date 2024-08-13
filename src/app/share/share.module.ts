@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DialogComponent } from './components/dialog/dialog.component';
+import { MaterialModule } from '../material/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -9,7 +11,9 @@ import { DialogComponent } from './components/dialog/dialog.component';
     DialogComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule,
+    ReactiveFormsModule
   ],
   exports:[
     DialogComponent

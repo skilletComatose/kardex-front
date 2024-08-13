@@ -1,10 +1,16 @@
 <h1>Listado de productos</h1>
 <mat-divider></mat-divider>
 
-<div class="grid bm-8 mt-2 pt-2">
-    <div *ngFor="let product of products" class="col-12 sm:col-4 md:col-3 xl: col-2">
-            <app-product-card
-                [product]="product">
-            </app-product-card>
+<div class="grid">
+    <div class="col-12" >
+        pendiente hacer filtro
+    </div>
+    <div class="col-12"  style="max-width: 90%;  margin: 0 auto;">
+        <div class="grid " >
+            <div  class="col-4"  *ngFor="let product of products"   >
+                <app-product-card [product]="product" >
+                </app-product-card>
+            </div>
+        </div>
     </div>
 </div>
