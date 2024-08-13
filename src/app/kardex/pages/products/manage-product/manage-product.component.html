@@ -2,12 +2,47 @@
 <mat-divider></mat-divider>
 
 <div class="grid">
-    <div class="col-12" >
-        pendiente hacer filtro
+    <div class="col-12 local-grid" >
+        <div class="col-12">
+            <mat-card class="search-panel">
+                <mat-card-content>
+                    <div class="grid">
+                       
+                        <div class="col-8">
+                            <mat-form-field appearance="fill" style="width: 100%;">
+                                <mat-label>Buscar productos</mat-label>
+                                <input matInput (keyup)="applyFilter($event.key)" placeholder="Buscar por nombre o descripción">
+                            </mat-form-field>
+                        </div>
+                        
+                        <div class="col-3">
+                            <mat-form-field appearance="fill" style="width: 100%;">
+                                <mat-label>Filtrar por categoría</mat-label>
+                                <mat-select #categorySelect (selectionChange)="applyCategoryFilter($event.value)" [value]="selectedCategory" >
+                                    <mat-option value="">Todas</mat-option>
+                                    <mat-option *ngFor="let category of categories" [value]="category">
+                                        {{ category.name }}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-1 mt-2">
+                            <button mat-icon-button color="primary" (click)="resetFilters()">
+                                <mat-icon matListItemIcon >delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    
     </div>
-    <div class="col-12"  style="max-width: 90%;  margin: 0 auto;">
+
+
+
+    <div class="col-12 local-grid"   >
         <div class="grid " >
-            <div  class="col-4"  *ngFor="let product of products"   >
+            <div  class="col-4"  *ngFor="let product of filteredProducts"   >
                 <app-product-card [product]="product" >
                 </app-product-card>
             </div>
