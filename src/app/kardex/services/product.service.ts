@@ -5,16 +5,32 @@ import { Product } from '../interfaces/product.interface';
 import { environments } from '../../../environments/enviroments';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class ProductService {
 
-  private baseUrl: string = environments.baseUrl;
-  private apiVersion:string = 'api/v1'
+	private baseUrl: string = environments.baseUrl;
+	private apiVersion: string = 'api/v1'
 
-  constructor(private http: HttpClient) { }
+	constructor(private http: HttpClient) { }
 
-  getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(`${this.baseUrl}/${this.apiVersion}/products`)
-  }
+	getAllProducts(): Observable<Product[]> {
+		return this.http.get<Product[]>(this.getUrl(''))
+	}
+
+	addToStock(produtId:number, quantity:number) :Observable<Product> {
+		const url:string = this.getUrl(`/${produtId}/stock/add/${quantity}`);
+		console.info("URL :" , url)
+
+		return this.http.put<Product>(url, {})
+	}
+
+	reduceStock(produtId:number, quantity:number) :Observable<Product> {
+		return this.http.put<Product>(this.getUrl(`/${produtId}/stock/reduce/${quantity}`),{})
+	}
+
+
+	private getUrl(path:string): string {
+		return `${this.baseUrl}/${this.apiVersion}/products${path}`;
+	}
 }

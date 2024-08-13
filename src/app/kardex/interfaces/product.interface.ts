@@ -1,3 +1,4 @@
+import { Observable } from "rxjs";
 import { EditEnumOption } from "../enum/product.enum";
 
 export interface Product {
@@ -22,6 +23,12 @@ export interface Category {
 
 
 export interface EditProductDialogResult {
-     action: EditEnumOption,
+     type: EditEnumOption,
      quantity: number;
+     productId: number;
+}
+
+export interface StockStrategy {
+    type: EditEnumOption;
+    apply: (productId: number, quantity: number) => Observable<Product>;
 }

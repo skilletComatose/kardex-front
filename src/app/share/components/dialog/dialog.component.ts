@@ -16,12 +16,12 @@ export class DialogComponent {
 	constructor(
 		private fb: FormBuilder,
 		public dialogRef: MatDialogRef<DialogComponent, EditProductDialogResult>,
-		@Inject(MAT_DIALOG_DATA) public data: Product
+		@Inject(MAT_DIALOG_DATA) public product: Product
 	) {
 		this.productForm = this.fb.group({
-			name: [{ value: data.name, disabled: true }],
-			description: [{ value: data.description, disabled: true }],
-			price: [{ value: data.price, disabled: true }],
+			name: [{ value: product.name, disabled: true }],
+			description: [{ value: product.description, disabled: true }],
+			price: [{ value: product.price, disabled: true }],
 			stockQuantity: ['', [Validators.required, Validators.pattern(/^[1-9]\d*$/)]]
 		});
 	}
@@ -29,18 +29,18 @@ export class DialogComponent {
 	onAddToStock(): void {
 		if (this.productForm.valid) {
 			const updatedValue = this.productForm.value.stockQuantity;
-			this.dialogRef.close({ action: EditEnumOption.ADD_STOKC, quantity: updatedValue });
+			this.dialogRef.close({ type: EditEnumOption.ADD_STOKC, quantity: updatedValue, productId: this.product.productId });
 		}
 	}
 
 	onSubtractFromStock(): void {
 		if (this.productForm.valid) {
 			const updatedValue = this.productForm.value.stockQuantity;
-			this.dialogRef.close({ action: EditEnumOption.REDUCE_STOCK, quantity: updatedValue });
+			this.dialogRef.close({ type: EditEnumOption.REDUCE_STOCK, quantity: updatedValue, productId: this.product.productId });
 		}
 	}
 
 	onCancel(): void {
-		this.dialogRef.close({action: EditEnumOption.CANCEL, quantity: 0});
+		this.dialogRef.close({type: EditEnumOption.CANCEL, quantity: 0, productId: this.product.productId});
 	}
 }
