@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { Product, Category } from '../../../../interfaces/product.interface';
+import { Product, Category, EditProductDialogResult } from '../../../../interfaces/product.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../../../../../share/components/dialog/dialog.component';
+import { EditEnumOption } from '../../../../enum/product.enum';
 
 @Component({
 	selector: 'app-product-card',
@@ -17,7 +18,6 @@ export class ProductCarddComponent {
 	public keysToShow = ['name', 'description'];
 
 
-
 	openDialog(): void {
 		const dialogRef = this.dialog.open(DialogComponent, {
 			width: '600px',
@@ -25,11 +25,10 @@ export class ProductCarddComponent {
 			data: this.product
 		});
 
-		// dialogRef.afterClosed().subscribe(result => {
-		// 	if (result !== undefined) {
-		// 		this.stock = result;
-		// 	}
-		// });
+		dialogRef.afterClosed().subscribe(
+			(result: EditProductDialogResult) => {
+					console.log("RESULTADOD EL DIALOG :" , result);		
+			});
 	}
 
 

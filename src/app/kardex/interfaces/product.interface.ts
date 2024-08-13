@@ -1,3 +1,5 @@
+import { EditEnumOption } from "../enum/product.enum";
+
 export interface Product {
     productId:     number;
     name:          string;
@@ -16,4 +18,10 @@ export interface Category {
     description: string;
     createdAt:   string;
     updatedAt:   string;
+}
+
+
+export interface EditProductDialogResult {
+     action: EditEnumOption,
+     quantity: number;
 }
