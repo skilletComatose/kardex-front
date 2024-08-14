@@ -16,7 +16,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
   exports:[
-    DialogComponent
+    DialogComponent,
+    MaterialModule,
+    ReactiveFormsModule
   ]
 })
 export class ShareModule { }

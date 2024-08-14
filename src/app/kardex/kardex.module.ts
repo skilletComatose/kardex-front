@@ -3,21 +3,23 @@ import { CommonModule } from '@angular/common';
 
 import { KardexRoutingModule } from './kardex-routing.module';
 import { HomeComponent } from './pages/home/home.component';
-import { ManageProductComponent } from './pages/products/manage-product/manage-product.component';
-import { MaterialModule } from '../material/material.module';
-import { ProductCarddComponent } from './pages/products/components/product-cardd/product-cardd.component';
+import { ManageProductComponent } from './pages/products/inventory/manage-product.component';
+import { ProductCardComponent } from './pages/products/inventory/components/product-card/product-card.component';
+import { CreateProductComponent } from './pages/products/create-product/create-product.component';
+import { ShareModule } from '../share/share.module';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     ManageProductComponent,
-    ProductCarddComponent
+    ProductCardComponent,
+    CreateProductComponent
   ],
   imports: [
     CommonModule,
     KardexRoutingModule,
-    MaterialModule
+    ShareModule
   ]
 })
 export class KardexModule { }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Product } from '../interfaces/product.interface';
+import { Product, CreateProduct } from '../interfaces/product.interface';
 import { environments } from '../../../environments/enviroments';
 
 @Injectable({
@@ -29,6 +29,9 @@ export class ProductService {
 		return this.http.put<Product>(this.getUrl(`/${produtId}/stock/reduce/${quantity}`),{})
 	}
 
+	createProduct(createProductData: CreateProduct): Observable<Product> {
+		return this.http.post<Product>(this.getUrl(``),{})
+	}
 
 	private getUrl(path:string): string {
 		return `${this.baseUrl}/${this.apiVersion}/products${path}`;

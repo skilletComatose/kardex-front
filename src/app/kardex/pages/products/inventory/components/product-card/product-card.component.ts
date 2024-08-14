@@ -1,16 +1,16 @@
 import { Component, Input } from '@angular/core';
-import { Product, Category, EditProductDialogResult, StockStrategy } from '../../../../interfaces/product.interface';
+import { Product, Category, EditProductDialogResult, StockStrategy } from '../../../../../interfaces/product.interface';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../../../../../share/components/dialog/dialog.component';
-import { EditEnumOption } from '../../../../enum/product.enum';
-import { ProductService } from '../../../../services/product.service';
+import { DialogComponent } from '../../../../../../share/components/dialog/dialog.component';
+import { EditEnumOption } from '../../../../../enum/product.enum';
+import { ProductService } from '../../../../../services/product.service';
 
 @Component({
 	selector: 'app-product-card',
-	templateUrl: './product-cardd.component.html',
-	styleUrl: './product-cardd.component.css'
+	templateUrl: './product-card.component.html',
+	styleUrl: './product-card.component.css'
 })
-export class ProductCarddComponent {
+export class ProductCardComponent {
 
 	@Input() public product!: Product;
 
@@ -43,6 +43,7 @@ export class ProductCarddComponent {
 		});
 
 		dialogRef.afterClosed().subscribe(this.handleDialogClose.bind(this));
+		
 	}
 
 

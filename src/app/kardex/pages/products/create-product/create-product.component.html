@@ -1,0 +1,26 @@
+<div class="grid" style="height: 90vh;">
+    <div class="col-8 mt-5  main-form" >
+        <form [formGroup]="productoForm" class="grid" >
+
+            <mat-form-field *ngFor="let item of formCreation" class="col-6" appearance="fill">
+                <mat-label> {{ item.label }} </mat-label>
+                <input matInput [formControlName]="item.formControlName">
+                <mat-error *ngIf="productoForm.get(item.formControlName)?.invalid">
+                    El nombre es obligatorio.
+                </mat-error>
+            </mat-form-field>
+         
+        
+            <div class="center" >
+                <div >
+                    <button mat-raised-button 
+                    color="primary" 
+                    type="submit" 
+                    [disabled]="productoForm.invalid">
+                        Guardar
+                </button>
+                </div>
+            </div> 
+        </form>
+    </div>
+</div>

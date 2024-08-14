@@ -68,7 +68,9 @@ export class ManageProductComponent implements OnInit {
 	applyCategoryFilter(category: Category) {
 		if (!category) {
 			this.filteredProducts = [...this.products];
+			return;
 		};
+		
 		this.filteredProducts = this.products.filter(product =>
 			product.category.categoryId === category.categoryId
 		);

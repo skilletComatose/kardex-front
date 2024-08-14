@@ -17,8 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     ShareModule,
-    MaterialModule,
-    ReactiveFormsModule
+    MaterialModule
   ],
   providers: [
     provideAnimationsAsync(),

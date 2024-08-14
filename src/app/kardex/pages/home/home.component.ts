@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class HomeComponent {
 
   public sideNavItems = [
-    {label: 'Home', icon: 'home', url: '/'},
+    {label: 'Registro', icon: 'add', url: 'create'},
     {label: 'Invetario', icon: 'inventory_2', url: 'management'},
   ]
 }
