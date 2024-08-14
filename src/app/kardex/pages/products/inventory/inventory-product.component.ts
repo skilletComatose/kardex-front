@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Category, Product } from '../../../interfaces/product.interface';
-import { ProductService } from '../../../services/product.service';
+import { ProductService } from '../../../services/product/product.service';
 import { MatSelect } from '@angular/material/select';
 
 @Component({
 	selector: 'app-manage-product',
-	templateUrl: './manage-product.component.html',
-	styleUrl: './manage-product.component.css'
+	templateUrl: './inventory-product.component.html',
+	styleUrl: './inventory-product.component.css'
 })
-export class ManageProductComponent implements OnInit {
+export class InventoryProductComponent implements OnInit {
 
 	@ViewChild('categorySelect') categorySelect!: MatSelect;
 

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { KardexRoutingModule } from './kardex-routing.module';
 import { HomeComponent } from './pages/home/home.component';
-import { ManageProductComponent } from './pages/products/inventory/manage-product.component';
+import { InventoryProductComponent } from './pages/products/inventory/inventory-product.component';
 import { ProductCardComponent } from './pages/products/inventory/components/product-card/product-card.component';
 import { CreateProductComponent } from './pages/products/create-product/create-product.component';
 import { ShareModule } from '../share/share.module';
@@ -12,7 +12,7 @@ import { ShareModule } from '../share/share.module';
 @NgModule({
   declarations: [
     HomeComponent,
-    ManageProductComponent,
+    InventoryProductComponent,
     ProductCardComponent,
     CreateProductComponent
   ],

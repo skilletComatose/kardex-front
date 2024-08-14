@@ -1,26 +1,44 @@
 <div class="grid" style="height: 90vh;">
-    <div class="col-8 mt-5  main-form" >
-        <form [formGroup]="productoForm" class="grid" >
-
-            <mat-form-field *ngFor="let item of formCreation" class="col-6" appearance="fill">
-                <mat-label> {{ item.label }} </mat-label>
-                <input matInput [formControlName]="item.formControlName">
-                <mat-error *ngIf="productoForm.get(item.formControlName)?.invalid">
-                    El nombre es obligatorio.
-                </mat-error>
-            </mat-form-field>
-         
-        
-            <div class="center" >
-                <div >
-                    <button mat-raised-button 
-                    color="primary" 
-                    type="submit" 
-                    [disabled]="productoForm.invalid">
-                        Guardar
-                </button>
-                </div>
-            </div> 
-        </form>
-    </div>
+    <ng-container *ngIf="!loading; else loadingTemplate" >
+        <div class="col-8 mt-5  main-form" >
+            <form [formGroup]="productoForm" class="grid" >
+    
+                <mat-form-field *ngFor="let item of formCreation" class="col-6" appearance="fill">
+                    <mat-label> {{ item.label }} </mat-label>
+                    <input matInput [formControlName]="item.formControlName">
+                    <mat-error *ngIf="productoForm.get(item.formControlName)?.invalid">
+                        Este campo es obligatorio
+                    </mat-error>
+                </mat-form-field>
+                
+                <mat-form-field appearance="fill" class="col-6">
+                    <mat-label>Escoger categoría</mat-label>
+                    <mat-select formControlName="category" >
+                        <mat-option *ngFor="let category of categories" [value]="category">
+                            {{ category.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            
+                <div class="center" >
+                    <div >
+                        <button mat-raised-button 
+                        color="primary" 
+                        type="submit"
+                        (click)="saveProduct()" 
+                        [disabled]="productoForm.invalid">
+                            Guardar
+                    </button>
+                    </div>
+                </div> 
+            </form>
+        </div>
+    </ng-container>
+    
+    <ng-template #loadingTemplate>
+		<div class="">
+			<mat-spinner></mat-spinner>
+		</div>
+	</ng-template>
 </div>
+

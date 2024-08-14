@@ -3,7 +3,9 @@ import { Product, Category, EditProductDialogResult, StockStrategy } from '../..
 import { MatDialog } from '@angular/material/dialog';
 import { DialogComponent } from '../../../../../../share/components/dialog/dialog.component';
 import { EditEnumOption } from '../../../../../enum/product.enum';
-import { ProductService } from '../../../../../services/product.service';
+import { ProductService } from '../../../../../services/product/product.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
 	selector: 'app-product-card',
@@ -29,7 +31,8 @@ export class ProductCardComponent {
 
 
 	constructor(public dialog: MatDialog,
-		private productService: ProductService
+		private productService: ProductService,
+		private snackBar: MatSnackBar
 	) { }
 
 	public keysToShow = ['name', 'description'];
@@ -74,9 +77,9 @@ export class ProductCardComponent {
 		this.loading = false;
 	}
 
-	private onStockUpdateError(err: any): void {
-		console.error(err);
+	private onStockUpdateError(httpError: HttpErrorResponse): void {
 		this.loading = false;
+		this.snackBar.open(httpError.error.error, "Cerrar")
 	}
 
 

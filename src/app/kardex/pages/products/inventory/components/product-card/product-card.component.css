@@ -19,12 +19,6 @@
   overflow-y: auto;
 }
 
-.loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
 
 .mat-spinner {
   width: 50px;

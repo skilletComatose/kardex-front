@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-home',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+
+  @ViewChild('sidenav') sidenav!: MatSidenav;
 
   public sideNavItems = [
     {label: 'Registro', icon: 'add', url: 'create'},
