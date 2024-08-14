@@ -3,6 +3,7 @@
 }
 .custom-card {
   max-width: 400px;
+  min-height: 700px;
   max-height: 700px;
   overflow-y: auto;
   overflow-x: hidden;

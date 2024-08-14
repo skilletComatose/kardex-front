@@ -58,8 +58,10 @@ export class CreateProductComponent implements OnInit {
             stockQuantity: this.quantity,
             imageUrl: this.imageUrl
         }
-
+        
         this.loading = true;
+        
+        
         this.productService.createProduct(product)
             .subscribe({
                 next: resp => {
@@ -94,7 +96,8 @@ export class CreateProductComponent implements OnInit {
 
     get imageUrl() {
         const value = this.productoForm.get('imageUrl')?.value;
-        return value ?? this.defaultImg;
+        if(value) return value;
+        return this.defaultImg;
     }
 
 }
