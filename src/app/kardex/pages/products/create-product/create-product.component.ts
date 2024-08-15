@@ -4,6 +4,7 @@ import { CategoryService } from '../../../services/category/category.service';
 import { Category, CreateProduct } from '../../../interfaces/product.interface';
 import { ProductService } from '../../../services/product/product.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'app-create-product',
@@ -68,7 +69,12 @@ export class CreateProductComponent implements OnInit {
                     this.loading = false
                     this.productoForm.reset()
                     this.snackBar.open('Se ha guardao el producto :', 'Cerrar')
+                },
+                error : (err:HttpErrorResponse) => {
+                        this.loading = false;
+                        this.snackBar.open(err.error.error, "Cerrar")
                 }
+
 
             })
 
